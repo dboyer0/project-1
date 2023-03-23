@@ -1,6 +1,6 @@
 import './App.css';
 
-function BookSearch() {
+const BookSearch = () => {
   return (
     <div className="search-books">
         <div className="search-books-bar">

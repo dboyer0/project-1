@@ -1,6 +1,6 @@
 import "./App.css";
 
-const Book = () => {
+const Book = ({ book }) => {
 
     return (
         <div className="book">

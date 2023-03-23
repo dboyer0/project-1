@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import BookShelf from "./BookShelf";
 import BookSearch from "./BookSearch";
 
-function App() {
+const App = () => {
   return (
     <div className="app">
       <Routes>
