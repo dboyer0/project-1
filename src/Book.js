@@ -1,6 +1,8 @@
 import "./App.css";
+import PropTypes from "prop-types";
+import CoverImage from "./cover-image-placeholder.png";
 
-const Book = ({ book }) => {
+const Book = ({ book, shelf }) => {
 
     return (
         <div className="book">
@@ -10,12 +12,21 @@ const Book = ({ book }) => {
                     style={{
                     width: 128,
                     height: 193,
-                    backgroundImage:
-                        'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")',
-                    }}
-                ></div>
+                    backgroundImage: `url(${book.imageLinks
+                            ?
+                                /* has thumbnail */
+                                book.imageLinks.thumbnail
+                            :
+                                /* no thumbnail, use placeholder */
+                                CoverImage
+                        })`  
+                    }}></div>
+
                 <div className="book-shelf-changer">
-                    <select>
+                    <select defaultValue={shelf} onChange={(e) => {
+                        console.log("Book: ", book);
+                        console.log("Change shelf: ", e.target.value);
+                    }}>
                         <option value="none" disabled>
                             Move to...
                         </option>
@@ -26,12 +37,29 @@ const Book = ({ book }) => {
                         <option value="read">Read</option>
                         <option value="none">None</option>
                     </select>
-                </div>
+                </div>  
             </div>
-            <div className="book-title">To Kill a Mockingbird</div>
-            <div className="book-authors">Harper Lee</div>
+
+            <div className="book-title">{book.title}</div>
+
+            {book.authors && book.authors.length
+                ?
+                    /* has author */
+                    book.authors.map((author, index) => {
+                        <div key={index} className="book-authors">{author}</div>
+                    })
+                :
+                    /* no author */
+                    <div className="book-authors">No Authors Available</div>
+            }
         </div>        
     );
 }
+
+
+Book.propTypes = {
+    book: PropTypes.object.isRequired,
+    shelf: PropTypes.string.isRequired
+};
 
 export default Book;
