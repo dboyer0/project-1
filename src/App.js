@@ -9,6 +9,7 @@ const App = () => {
 
   const [books, setBooks] = useState([]);
 
+  /* onComponentMount */
   useEffect(() => {
     const getBooks = async () => {
       const res = await BooksAPI.getAll();
@@ -39,7 +40,10 @@ const App = () => {
         <Route
           path="/search"
           element={
-            <BookSearch />
+            <BookSearch
+              savedBooks={books}
+              onBookUpdate={()=>{}}
+            />
           }
         />        
       </Routes>

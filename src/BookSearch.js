@@ -1,6 +1,7 @@
 import './App.css';
+import PropTypes from "prop-types";
 
-const BookSearch = () => {
+const BookSearch = ({ savedBooks, onBookUpdate }) => {
   return (
     <div className="search-books">
         <div className="search-books-bar">
@@ -25,5 +26,10 @@ const BookSearch = () => {
     </div>
   );
 }
+
+BookSearch.propTypes = {
+    savedBook: PropTypes.object.isRequired,
+    onBookUpdate: PropTypes.func.isRequired
+};
 
 export default BookSearch;
