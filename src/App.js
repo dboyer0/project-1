@@ -19,6 +19,7 @@ const App = () => {
   }, []);
 
   console.log("Books List: ", books);
+  console.log("Currently Reading Book list: ", books.filter(book => book.shelf === "currentlyReading"))
 
   return (
     <div className="app">
@@ -27,7 +28,12 @@ const App = () => {
           exact
           path="/"
           element={
-            <BookShelf />
+            <BookShelf
+              currentlyReading={books.filter(book => book.shelf === "currentlyReading")}
+              read={books.filter(book => book.shelf === "read")}
+              wantToRead={books.filter(book => book.shelf === "wantToRead")}
+              onBookUpdate={()=>{}}
+            />
           }
         />
 

@@ -1,7 +1,8 @@
 import './App.css';
+import PropTypes from "prop-types";
 import Book from "./Book";
 
-const BookShelf = () => {
+const BookShelf = ({ currentlyReading, wantToRead, read, onBookUpdate }) => {
   return (
     <div className="list-books">
         <div className="list-books-title">
@@ -229,5 +230,12 @@ const BookShelf = () => {
     </div>
   );
 }
+
+BookShelf.propTypes = {
+    currentlyReading: PropTypes.array.isRequired,
+    read: PropTypes.array.isRequired,
+    wantToRead: PropTypes.array.isRequired,
+    onBookUpdate: PropTypes.func.isRequired
+};
 
 export default BookShelf;
