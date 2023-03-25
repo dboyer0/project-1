@@ -19,7 +19,6 @@ const App = () => {
   }, []);
 
   console.log("Books List: ", books);
-  console.log("Currently Reading Book list: ", books.filter(book => book.shelf === "currentlyReading"))
 
   return (
     <div className="app">
