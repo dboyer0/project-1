@@ -2,7 +2,7 @@ import "./App.css";
 import PropTypes from "prop-types";
 import CoverImage from "./cover-image-placeholder.png";
 
-const Book = ({ book, shelf }) => {
+const Book = ({ book, shelf, onBookUpdate }) => {
 
     return (
         <div className="book">
@@ -26,6 +26,7 @@ const Book = ({ book, shelf }) => {
                     <select defaultValue={shelf} onChange={(e) => {
                         console.log("Book: ", book);
                         console.log("Change shelf: ", e.target.value);
+                        onBookUpdate(book, e.target.value);
                     }}>
                         <option value="none" disabled>
                             Move to...
@@ -59,7 +60,8 @@ const Book = ({ book, shelf }) => {
 
 Book.propTypes = {
     book: PropTypes.object.isRequired,
-    shelf: PropTypes.string.isRequired
+    shelf: PropTypes.string.isRequired,
+    onBookUpdate: PropTypes.func.isRequired
 };
 
 export default Book;

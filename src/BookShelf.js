@@ -20,7 +20,7 @@ const BookShelf = ({ currentlyReading, wantToRead, read, onBookUpdate }) => {
                     
                             {currentlyReading.map(book => (
                                 <li key={book.id}>
-                                    <Book book={book} shelf={book.shelf} />
+                                    <Book book={book} shelf={book.shelf} onBookUpdate={onBookUpdate} />
                                 </li>
                             ))}
 
@@ -35,7 +35,7 @@ const BookShelf = ({ currentlyReading, wantToRead, read, onBookUpdate }) => {
                 
                             {wantToRead.map(book => (
                                 <li key={book.id}>
-                                    <Book book={book} shelf={book.shelf} />
+                                    <Book book={book} shelf={book.shelf} onBookUpdate={onBookUpdate} />
                                 </li>
                             ))}
 
@@ -50,7 +50,7 @@ const BookShelf = ({ currentlyReading, wantToRead, read, onBookUpdate }) => {
                 
                             {read.map(book => (
                                 <li key={book.id}>
-                                    <Book book={book} shelf={book.shelf} />
+                                    <Book book={book} shelf={book.shelf} onBookUpdate={onBookUpdate} />
                                 </li>
                             ))}
 

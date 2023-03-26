@@ -24,22 +24,21 @@ const App = () => {
     // create new book with updated shelf
     // PUT /update(book,shelf)
     // get response
-    // call setBooks to update book state
-    // concat book to array of books
+    // create temp book to model the new books update shelf
+    // filter out the book being updates from current books state
+    // reinsert temp book into state array by calling setBooks to update book state
 
     BooksAPI.update(book, shelf).then(() => {
+      // create updated book
       let newBook = book
-      console.log("newBook before updating state: ", newBook)
       newBook.shelf = shelf
-      console.log("newBook with updated shelf: ", newBook)
       // remove book from state
       // add the updated book to state
-      // this.setState((prevState) => ({ books: prevState.books.filter(b => b.id !== book.id).concat(newBook) }))
-      setBooks((books) => ({ books: books.filter(b => b.id !== book.id).concat(newBook) }))
-      console.log("Books array after updating state: ", books)
+      let updatedBooksList = books.filter(b => b.id !== book.id).concat(newBook)
+      setBooks(updatedBooksList);
+
     })
   }
-
 
   console.log("Books List: ", books);
 
