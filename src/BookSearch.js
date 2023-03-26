@@ -1,16 +1,17 @@
 import './App.css';
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const BookSearch = ({ savedBooks, onBookUpdate }) => {
   return (
     <div className="search-books">
         <div className="search-books-bar">
-            <a
+            <Link
+                to="/"
                 className="close-search"
-                // onClick={() => setShowSearchpage(!showSearchPage)}
             >
                 Close
-            </a>
+            </Link>
 
             <div className="search-books-input-wrapper">
                 <input

@@ -61,7 +61,7 @@ const BookShelf = ({ currentlyReading, wantToRead, read, onBookUpdate }) => {
         </div>
 
         <div className="open-search">
-            <Link to="/search" />
+            <Link to="/search">Add a book</Link>
         </div>
     </div>
   );
