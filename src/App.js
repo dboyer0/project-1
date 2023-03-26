@@ -63,7 +63,7 @@ const App = () => {
           element={
             <BookSearch
               savedBooks={books}
-              onBookUpdate={()=>{}}
+              onBookUpdate={onBookUpdate}
             />
           }
         />        
