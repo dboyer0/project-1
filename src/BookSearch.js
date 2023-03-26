@@ -28,7 +28,7 @@ const BookSearch = ({ savedBooks, onBookUpdate }) => {
 }
 
 BookSearch.propTypes = {
-    savedBook: PropTypes.object.isRequired,
+    savedBooks: PropTypes.array.isRequired,
     onBookUpdate: PropTypes.func.isRequired
 };
 

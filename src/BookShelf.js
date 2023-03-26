@@ -1,5 +1,6 @@
 import './App.css';
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Book from "./Book";
 
 const BookShelf = ({ currentlyReading, wantToRead, read, onBookUpdate }) => {
@@ -60,8 +61,7 @@ const BookShelf = ({ currentlyReading, wantToRead, read, onBookUpdate }) => {
         </div>
 
         <div className="open-search">
-            {/* <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a> */}
-            <a onClick={() => {}}>Add a book</a>
+            <Link to="/search" />
         </div>
     </div>
   );
