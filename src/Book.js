@@ -24,7 +24,6 @@ const Book = ({ book, shelf, onBookUpdate }) => {
 
                 <div className="book-shelf-changer">
                     <select defaultValue={shelf} onChange={(e) => {
-                        console.log("Book: ", book);
                         console.log("Change shelf: ", e.target.value);
                         onBookUpdate(book, e.target.value);
                     }}>
@@ -47,7 +46,7 @@ const Book = ({ book, shelf, onBookUpdate }) => {
                 ?
                     /* has author */
                     book.authors.map((author, index) => {
-                        <div key={index} className="book-authors">{author}</div>
+                        return <div key={index} className="book-authors">{author}</div>
                     })
                 :
                     /* no author */
