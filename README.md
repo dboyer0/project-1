@@ -1,15 +1,16 @@
 # Summary:
 This app is a simulated book shelf where a user can search for books and place them on different shelves based on the current state of reading of the books.
 
-> This project was bootstrapped with `create-react-app`
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 # Download code base from:
 ```sh
-git clone <repoURI>
+git clone https://github.com/dboyer0/project-1.git
 ```
 
 # Install:
 ```sh
-cd react-nanodegree-project-1 && npm install
+cd project-1 && npm install
 ```
 
 # Run:
@@ -17,9 +18,13 @@ cd react-nanodegree-project-1 && npm install
 npm start
 ```
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+==================================================================================
+
+
+
 
 ## Available Scripts
 
