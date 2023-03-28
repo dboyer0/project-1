@@ -13,9 +13,12 @@ const BookSearch = ({ savedBooks, onBookUpdate }) => {
     const handleChange = (typedQuery) => {
         console.log("Typed Query: ", typedQuery);
 
+        // a query is present
         if (typedQuery) {
+            // add query to state
             setQuery(typedQuery);
       
+            // query api for specified query
             BooksAPI.search(typedQuery, 20).then((queriedBooks) => {
 
               console.log("[API] - Books returned from server: ", queriedBooks);
@@ -54,9 +57,9 @@ const BookSearch = ({ savedBooks, onBookUpdate }) => {
             })
       
           } else {
+            // clear query
             setQuery("");
           }
-      
     }
 
     let showingBooks
@@ -93,12 +96,14 @@ const BookSearch = ({ savedBooks, onBookUpdate }) => {
 
                     {showingBooks.length
                         ?
+                            /* has books to show */
                             showingBooks.map(book => (
                                 <li key={book.id}>
                                     <Book book={book} shelf={book.shelf} onBookUpdate={onBookUpdate} />
                                 </li>
                             ))    
                         :
+                            /* no books to show */
                             <li>
                                 <h1>No search results available</h1>
                             </li>
