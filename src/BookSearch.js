@@ -10,43 +10,62 @@ const BookSearch = ({ savedBooks, onBookUpdate }) => {
     const [ query, setQuery ] = useState("");
     const [ searchedBooks, setSearchBooks ] = useState([]);
 
-    const handleChange = (e) => {
-        console.log("query: ", e.target.value);
+    const handleChange = (typedQuery) => {
+        console.log("Typed Query: ", typedQuery);
 
-        if(query){
-            // set query state
-            setQuery(e.target.value);
+        if (typedQuery) {
+            setQuery(typedQuery);
+      
+            BooksAPI.search(typedQuery, 20).then((queriedBooks) => {
 
-            // call server for books that match
-            BooksAPI.search(query, 10).then((queriedBooks) => {
-                console.log("Queried books: ", queriedBooks);
+              console.log("[API] - Books returned from server: ", queriedBooks);
 
-                // cycle through the queriedBooks
-                // if there is no shelf, set the shelf to "none"
-                queriedBooks.forEach(book => {
-                    if(!book.shelf){
-                        book.shelf = "none"
-                    }
-                })
-        
-                // this.setState({ searchedBooks: queriedBooks })
-                setSearchBooks(queriedBooks);
-  
+              // cycle through the savedBooks
+              // for each queriedBooks, if its id matches an id from the savedBooks, replace book
+              savedBooks.map((book, index) => {
+                for (let [index, queriedBook] of queriedBooks.entries()) {
+                  if (book.id === queriedBook.id) {
+                    // index = index of element to be removed
+                    // 1 = # of elements to be removed
+                    // book = the element to input in the open slot
+                    queriedBooks.splice(index, 1, book)
+                  }
+                }
+                return null
+              })
+      
+              // cycle through the queriedBooks
+              // if there is no shelf, set the shelf to "none"
+              queriedBooks.forEach(book => {
+                if(!book.shelf){
+                  book.shelf = "none"
+                }
+              })
+      
+              setSearchBooks(queriedBooks);
+
+              console.log("[STATE] - Books saved to state and remote server: ", searchedBooks);
+              
+            }).catch((error) => {
+              // if an invalid search term exists, set state to blank array
+              setSearchBooks([]);
+              // dump error to console
+              console.log("Error", error)
             })
-
-        } else {
-            /* empty query */
+      
+          } else {
             setQuery("");
-        }
+          }
+      
     }
 
-    console.log("Query current state: ", query);
-
     let showingBooks
-    if(query){
-        showingBooks = searchedBooks.filter(book => book.id !== query.id)
+    if(query) {
+        showingBooks = searchedBooks
+        console.log("Has showing books:", showingBooks)
     } else {
         showingBooks = []
+        console.log("No showing books:", showingBooks)
     }
 
     return (
@@ -63,7 +82,7 @@ const BookSearch = ({ savedBooks, onBookUpdate }) => {
                     <input
                         type="text"
                         placeholder="Search by title, author, or ISBN"
-                        onChange={handleChange}
+                        onChange={event => handleChange(event.target.value)}
                         autoFocus
                     />
                 </div>
