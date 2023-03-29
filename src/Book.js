@@ -1,5 +1,6 @@
 import "./App.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import CoverImage from "./cover-image-placeholder.png";
 
 const Book = ({ book, shelf, onBookUpdate }) => {
@@ -52,6 +53,10 @@ const Book = ({ book, shelf, onBookUpdate }) => {
                     /* no author */
                     <div className="book-authors">No Authors Available</div>
             }
+
+            {/* passing in the book object via state so that its accessible in the book details component */}
+            {/* alternatively, could just pass in the id (as is being done, but not used) and do a GET in book details component */}
+            <Link to={`/book-details/${book.id}`} state={book}>View Details</Link>
         </div>        
     );
 }

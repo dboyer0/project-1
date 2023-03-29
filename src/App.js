@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import BookShelf from "./BookShelf";
 import BookSearch from "./BookSearch";
+import BookDetails from './BookDetails';
 
 const App = () => {
 
@@ -66,7 +67,15 @@ const App = () => {
               onBookUpdate={onBookUpdate}
             />
           }
-        />        
+        />
+
+        <Route
+          path="/book-details/:bookId"
+          element={
+            <BookDetails />
+          }
+        />
+
       </Routes>
     </div>
   );
