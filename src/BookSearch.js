@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Debounce } from 'react-throttle'
 import Book from "./Book";
 import * as BooksAPI from "./BooksAPI";
 
@@ -82,12 +83,14 @@ const BookSearch = ({ savedBooks, onBookUpdate }) => {
                 </Link>
 
                 <div className="search-books-input-wrapper">
-                    <input
-                        type="text"
-                        placeholder="Search by title, author, or ISBN"
-                        onChange={event => handleChange(event.target.value)}
-                        autoFocus
-                    />
+                    <Debounce time="400" handler="onChange">
+                        <input
+                            type="text"
+                            placeholder="Search by title, author, or ISBN"
+                            onChange={event => handleChange(event.target.value)}
+                            autoFocus
+                        />
+                    </Debounce>
                 </div>
             </div>
 
